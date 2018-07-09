@@ -30,4 +30,4 @@ services:
       SESSION_SECRET: 'lalala'
       USER_SERVICE_ADDRESS: 'user-service'
       FRONTEND_ADDRESS: 'currency-frontend'
-      CALCULATOR_ADDRESS: 'CurrencyCalculator:80'
+      CALCULATOR_ADDRESS: 'currency-calculator'
