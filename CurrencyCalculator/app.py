@@ -7,11 +7,11 @@ import logging
 
 class MainHandler(tornado.web.RequestHandler):
     def post(self):
-        body = self.request.body
-        jsonBody = json.loads(body)
-        jsonState = jsonBody.get('calculatorState', '{}')
-        input = jsonBody.get('input', '')
         try:
+            body = self.request.body
+            jsonBody = json.loads(body)
+            jsonState = jsonBody.get('calculatorState', '{}')
+            input = jsonBody.get('input', '')
             res = calculator.calculateNextState(json.dumps(jsonState), input)
         except Exception as ex:
             print(str(ex))
@@ -20,7 +20,6 @@ class MainHandler(tornado.web.RequestHandler):
 
 
 def make_app():
-    logging.info("write to log")
     return tornado.web.Application([
         (r"/calculate", MainHandler),
     ])
