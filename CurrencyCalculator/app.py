@@ -2,19 +2,17 @@ import tornado.ioloop
 import tornado.web
 import calculator
 import json
-import logging
 
 
 class MainHandler(tornado.web.RequestHandler):
     def post(self):
         try:
             body = self.request.body
-            jsonBody = json.loads(body)
-            jsonState = jsonBody.get('calculatorState', '{}')
-            input = jsonBody.get('input', '')
-            res = calculator.calculateNextState(json.dumps(jsonState), input)
-        except Exception as ex:
-            print(str(ex))
+            json_body = json.loads(body)
+            input_data = json_body['input'] if 'input' in json_body else ''
+            json_state = json_body['calculatorState'] if 'calculatorState' in json_body else '{}'
+            res = calculator.calculateNextState(json.dumps(json_state), input_data)
+        except:
             res = json.dumps({'display': ''})
         self.write(res)
 

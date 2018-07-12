@@ -2,26 +2,26 @@ import re
 import json
 
 
-def calculateNextState(json_state, input):
+def calculateNextState(json_state, input_data):
 
     json_state = json.loads(json_state)
     expression = ''
     end_of_exp = False
 
     if json_state is not None:
-        expression = json_state.get('expression', '')
-        end_of_exp = json_state.get('end_of_exp', False)
+        expression = json_state['expression'] if 'expression' in json_state else ''
+        end_of_exp = json_state['end_of_exp'] if 'end_of_exp' in json_state else False
 
-    if input == "=":
+    if input_data == "=":
         display_number = float(eval(expression))
 
         end_of_exp = True
         expression = str(display_number)
     else:
-        if input.isdigit() and end_of_exp == True:
-            expression = input
+        if input_data.isdigit() and end_of_exp == True:
+            expression = input_data
         else:
-            expression += input
+            expression += input_data
         end_of_exp = False
         display_number = float(re.search(r'(\d*\.?\d+)\D*$', expression).group(1))
 
