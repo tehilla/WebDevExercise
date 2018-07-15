@@ -12,8 +12,11 @@ class MainHandler(tornado.web.RequestHandler):
             input_data = json_body['input'] if 'input' in json_body else ''
             json_state = json_body['calculatorState'] if 'calculatorState' in json_body else '{}'
             res = calculator.calculateNextState(json.dumps(json_state), input_data)
-        except:
-            res = json.dumps({'display': ''})
+        except Exception as e:
+            if str(e) == 'invalid expression':
+                res = json.dumps({'display': 'Invalid input'})
+            else:
+                res = json.dumps({'display': 'Error'})
         self.write(res)
 
 
