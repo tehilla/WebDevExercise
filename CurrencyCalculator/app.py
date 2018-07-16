@@ -1,27 +1,24 @@
+from tornado.web import Application, RequestHandler
 import tornado.ioloop
-import tornado.web
 import calculator
 import json
 
 
-class MainHandler(tornado.web.RequestHandler):
+class MainHandler(RequestHandler):
     def post(self):
         try:
             body = self.request.body
             json_body = json.loads(body)
-            input_data = json_body['input'] if 'input' in json_body else ''
-            json_state = json_body['calculatorState'] if 'calculatorState' in json_body else '{}'
+            input_data = json_body['input'] if 'input' in json_body and json_body['input'] else ''
+            json_state = json_body['calculatorState'] if 'calculatorState' in json_body and json_body['calculatorState'] else '{}'
             res = calculator.calculateNextState(json.dumps(json_state), input_data)
         except Exception as e:
-            if str(e) == 'invalid expression':
-                res = json.dumps({'display': 'Invalid input'})
-            else:
-                res = json.dumps({'display': 'Error'})
+            res = json.dumps({'display': str(e)})
         self.write(res)
 
 
 def make_app():
-    return tornado.web.Application([
+    return Application([
         (r"/calculate", MainHandler),
     ])
 
