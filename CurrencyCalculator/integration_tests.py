@@ -1,6 +1,7 @@
 from tornado.testing import AsyncHTTPTestCase
 from tornado.escape import json_decode
 from app import make_app
+import unittest
 import json
 
 
@@ -61,3 +62,7 @@ class MainHandlerTestCase(HandlerBaseTestCase):
         self.assertEqual('56', json_data["display"])
         json_data = self.fetch_calculate_post('5', json_data)
         self.assertEqual('5', json_data["display"])
+
+
+if __name__ == "__main__":
+    unittest.main()
