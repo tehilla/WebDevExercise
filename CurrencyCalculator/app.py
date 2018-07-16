@@ -13,7 +13,10 @@ class MainHandler(RequestHandler):
             json_state = json_body['calculatorState'] if 'calculatorState' in json_body and json_body['calculatorState'] else '{}'
             res = calculator.calculateNextState(json.dumps(json_state), input_data)
         except Exception as e:
-            res = json.dumps({'display': str(e)})
+            if str(e) == 'Invalid input':
+                res = json.dumps({'display': str(e)})
+            else:
+                res = json.dumps({'display': 'Error'})
         self.write(res)
 
 
