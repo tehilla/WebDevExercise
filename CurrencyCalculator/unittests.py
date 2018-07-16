@@ -102,6 +102,8 @@ class CalculatorTests(unittest.TestCase):
 
     def test_validate_full_expression(self):
         calculator.validate_full_expression('2+3')
+
+    def test_validate_full_expression1(self):
         calculator.validate_full_expression('2+3+5')
 
     def test_validate_full_expression_fail(self):
@@ -110,43 +112,73 @@ class CalculatorTests(unittest.TestCase):
 
     def test_validate_partial_expression(self):
         calculator.validate_partial_expression('2')
+
+    def test_validate_partial_expression1(self):
         calculator.validate_partial_expression('2.3+')
+
+    def test_validate_partial_expression2(self):
         calculator.validate_partial_expression('2+3*')
 
     def test_validate_partial_expression_fail(self):
         with self.assertRaises(Exception):
             calculator.validate_partial_expression('2+-')
+
+    def test_validate_partial_expression_fail1(self):
         with self.assertRaises(Exception):
             calculator.validate_partial_expression('2.*4')
 
     def test_extract_last_number_occurrence(self):
         self.assertEqual('2', calculator.extract_last_number_occurrence('34+93-28.6/2'))
+
+    def test_extract_last_number_occurrence1(self):
         self.assertEqual('28.6', calculator.extract_last_number_occurrence('34+93-28.6'))
+
+    def test_extract_last_number_occurrence2(self):
         self.assertEqual('93', calculator.extract_last_number_occurrence('34+93-*/+='))
 
     def test_extract_last_number_occurrence_with_fail(self):
         with self.assertRaises(Exception):
             calculator.extract_last_number_occurrence('+-')
+
+    def test_extract_last_number_occurrence_with_fail1(self):
         with self.assertRaises(Exception):
             calculator.extract_last_number_occurrence('')
 
     def test_validate_input_data(self):
         calculator.validate_input_data('2')
+
+    def test_validate_input_data1(self):
         calculator.validate_input_data('-')
+
+    def test_validate_input_data2(self):
         calculator.validate_input_data('+')
+
+    def test_validate_input_data3(self):
         calculator.validate_input_data('.')
+
+    def test_validate_input_data4(self):
         calculator.validate_input_data('=')
+
+    def test_validate_input_data5(self):
         calculator.validate_input_data('/')
 
     def test_validate_input_data_with_fail(self):
         with self.assertRaises(Exception):
             calculator.validate_input_data('@')
+
+    def test_validate_input_data_with_fail1(self):
         with self.assertRaises(Exception):
             calculator.validate_input_data('19')
+
+    def test_validate_input_data_with_fail2(self):
         with self.assertRaises(Exception):
             calculator.validate_input_data('?')
+
+    def test_validate_input_data_with_fail3(self):
         with self.assertRaises(Exception):
             calculator.validate_input_data('**')
+
+    def test_validate_input_data_with_fail4(self):
         with self.assertRaises(Exception):
             calculator.validate_input_data('+-')
 
