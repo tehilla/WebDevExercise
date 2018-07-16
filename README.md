@@ -1,4 +1,4 @@
-# WebDevExercise
+# CalculatorWebApp
 Exercise for Web Development Course
 
 1. Tal Bokobza
@@ -8,6 +8,7 @@ Exercise for Web Development Course
 * In case of Invalid Input in the request we set the display to ="Invalid Input".
 * In case of error in the request we set the display to ="Error".
 * Supporting on Float numbers calculations (for example "6.2/4").
+* Not supporting Negative numbers in expression (only operation minus).
 
 # Overview:
 * This project was written in python 3.6.4
