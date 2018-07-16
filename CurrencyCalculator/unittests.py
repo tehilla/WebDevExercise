@@ -130,6 +130,26 @@ class CalculatorTests(unittest.TestCase):
         with self.assertRaises(Exception):
             calculator.extract_last_number_occurrence('')
 
+    def test_validate_input_data(self):
+        calculator.validate_input_data('2')
+        calculator.validate_input_data('-')
+        calculator.validate_input_data('+')
+        calculator.validate_input_data('.')
+        calculator.validate_input_data('=')
+        calculator.validate_input_data('/')
+
+    def test_validate_input_data_with_fail(self):
+        with self.assertRaises(Exception):
+            calculator.validate_input_data('@')
+        with self.assertRaises(Exception):
+            calculator.validate_input_data('19')
+        with self.assertRaises(Exception):
+            calculator.validate_input_data('?')
+        with self.assertRaises(Exception):
+            calculator.validate_input_data('**')
+        with self.assertRaises(Exception):
+            calculator.validate_input_data('+-')
+
 
 if __name__ == "__main__":
     unittest.main()
