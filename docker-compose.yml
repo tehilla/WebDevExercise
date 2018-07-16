@@ -13,6 +13,7 @@ services:
 
   currency-calculator:
     image: currcalc
+    container_name: currency-calculator
     build:
       context: CurrencyCalculator
       dockerfile: .Dockerfile
